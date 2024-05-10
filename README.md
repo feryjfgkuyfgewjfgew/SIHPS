@@ -10,180 +10,46 @@ Website that tells you the location of the nearest e-waste collection and recycl
 Ministry of Environment
 
 ## Idea
-Imagine an app or website where you can easily find places to recycle your old electronics like phones, TVs, and computers. You type in your address, and it shows nearby locations that accept e-waste.
+HOW TO REDUCE E-WASTE The challenge of reducing e-waste is something everyone needs to become aware of and make a commitment to doing, and it starts with understanding why we don’t want our used electronics continuously flowing into community landfills.
 
-This would be good for the environment because e-waste can be dangerous if it's thrown away in regular trash.  By recycling them properly, we can reduce pollution and conserve resources.
+Electronic waste is defined as discarded electrical or electronic devices that can lead to human and environmental damage if they get put in landfills. These devices contain toxic chemicals like mercury and lead, and while they’re safe to use once they get placed in a landfill those toxins can seep out into the soil and water, contaminating both. If those toxins get into your drinking water then that presents a health hazard for you and your family.
+
+And this is no minor challenge. As technology evolves and keeps improving our electronics, giving us incentives to get rid of our current models for the newest one, there’s been a tendency to just throw away these products. This has created a serious global e-waste problem.
+
+Reducing e-waste isn’t just about eliminating those environmental risks. Minimizing e-waste also helps us to conserve resources and reduces the amount of energy we need to make these products; recycling parts within e-waste uses considerably less energy than creating new ones.
+
+We can also help keep down the cost of new consumer goods by using recycled parts to make new products. This is a far less expensive proposition for manufacturers than having to go mining for virgin ore to make new metals. This means that the cost of making a new smartphone, or any other electronic device, goes down once manufacturers are able to access the parts they need from the recycling industry.
+
+So this is a win-win proposition all around. The challenge, of course, is that not enough people know that e-waste can be recycled.
+
+That’s why one of the strongest and most effective ways on learning how to reduce e-waste is to help spread the word about recycling.
+
+If you’re someone that already recycles your e-waste then it’s great that you’re already doing your part to reduce waste. Now it’s time to go the next step and share your knowledge with other people — family, friends, neighbors, coworkers — who may not be aware of the hazards that e-waste poses.
+
+If you have a family member or friend that just got a new smartphone or laptop, or simply plans on disposing of their old ones, talk to them about recycling it with an experienced recycling firm like Great Lakes Electronics Corporation, which can make the parts within them available to new users and manufacturers.
+
+It’s also important to share your knowledge on the detrimental impact of throwing those devices away, or even hoarding them, this gives people a reason to act on your advice. If your friends and family members appreciate recycling and faithfully toss their plastics, cans and papers in municipal bins, let them know how easy it is to recycle e-waste. They can easily call a recycling firm, like Great Lakes Electronics Corporation, and do the same with their e-waste.
 
 ## Proposed Solution / Architecture Diagram
 
-Components:
+Nobody expects the amount of e-waste we generate to suddenly drop — in part because prices of new electronics are dropping, making them in much higher demand around the world, courtesy of a growing middle class in developing nations that’s going digital. After all, around the world half of all households have internet access, and more than 7.7 billion people have cell phones.
 
-User Interface (UI): This can be a mobile app or website for user interaction.
-API Gateway: This acts as a single entry point for all API requests, managing security and routing to backend services.
-User Management Service (Optional): This service (e.g., using Firebase Authentication) handles user registration, login, and access control (if applicable).
-Geolocation Service (Optional): This retrieves user location data with permission for a more targeted search.
-E-waste Facility Database: This stores information about e-waste facilities, including:
-Address
-Contact information
-Accepted e-waste types
-Operating hours
-(Optional) User ratings and reviews (if implemented)
-Search & Recommendation Engine: This service takes user input (location and desired e-waste type) and queries the database for relevant facilities.
-Mapping Service: This displays the user's location and recommended facilities on a map (e.g., Google Maps Platform or OpenStreetMap).
-Data Flow:
+How can we stop the e-waste problem? The first is to keep all used electronic devices out of our trash and our landfills. The same is true for simply hoarding those devices in our closets or desk drawers, where the valuable properties within them sit unused. And there are proven solutions for reducing e-waste.
 
-User opens the E-waste Locator app/website.
-(Optional) User creates an account or logs in (if user management is included).
-UI prompts user for location (zip code or allows geolocation access).
-(Optional) Geolocation Service retrieves user's coordinates or zip code.
-User selects desired e-waste type (optional filter).
-UI sends location data and filter criteria (if any) to the API Gateway.
-API Gateway routes the request to the Search & Recommendation Engine.
-Search & Recommendation Engine queries the E-waste Facility Database based on user input.
-Search & Recommendation Engine sends results back to the API Gateway.
-API Gateway forwards the results (list of facilities) to the UI.
-UI displays a list and map of nearby e-waste facilities with details like address, operating hours, and (optional) user ratings (if implemented).
-Diagram:
-
-+--------------------+        +-----------------+        +-----------+        +--------------------+
-|       User        | ----> |      UI        | ----> | API Gateway| ----> | User Management  |
-+--------------------+        +-----------------+        +-----------+        +--------------------+
-         |                         |                         | (Optional)         |
-         |                         |                         v                     v
-         |                         |                   +--------------------+        +--------------------+
-         |                         |                   | Geolocation Service| ----> | Search & Recommend |
-         |                         |                   +--------------------+        +--------------------+
-         |                         |                         | (Optional)         |        (Criteria)      |
-         |                         |                         v                     v
-+--------------------+        +-----------------+        +-----------+        +--------------------+
-| Location (GPS/Zip)| ----> |      UI        | ----> | API Gateway| ----> | E-waste Facility  |
-+--------------------+        +-----------------+        +-----------+        +--------------------+
-                                 |                         | Database             |
-                                 |                         +--------------------+
-                                 |                         | (Facility Data)     |
-                                 |                         +--------------------+
-                                 v                         |
-                             +--------------------+        +--------------------+
-                             | Mapping Service  | ----> |      UI        |
-                             +--------------------+        +--------------------+
-                                                        | (Results - List & Map)
-                                                        v
-                                                    +--------------------+
-                                                    |       User        |
-                                                    +--------------------+
-                                                        | (Optional Actions)
-                                                        | (e.g., Reviews)
-                                                        v
-                                                    +--------------------+
-                                                    |       Admin        | (Optional)
-                                                    +--------------------+
-                                                        | (Facility Management)
-
+![shi1](https://github.com/RAGALASAIVIVEK/SIHPS/assets/144979718/7a79951c-b55b-4b33-b702-3eb649e951b3)
 
 
 ## Use Cases
 
-Here's a use case diagram for your E-waste Facility Locator idea:
-
-Actors:
-
-Resident
-Recycling Facility Manager
-Local Government Agency (optional)
-Environmental Organization (optional)
-Use Cases:
-
-Find E-waste Facility (Resident)
-Register E-waste Facility (Recycling Facility Manager)
-Manage E-waste Facility Information (Recycling Facility Manager) (optional)
-Partner with E-waste Locator (Local Government Agency) (optional)
-Provide Educational Content (Environmental Organization) (optional)
-Relationships:
-
-Find E-waste Facility: Resident interacts with the system to find a location to dispose of their e-waste.
-Register E-waste Facility: Recycling Facility Manager interacts with the system to add their facility to the database.
-Manage E-waste Facility Information (optional): Recycling Facility Manager can update their facility information (address, hours, accepted items) as needed. (Extends Register E-waste Facility)
-Partner with E-waste Locator (optional): Local Government Agency interacts with the system to potentially provide data or promote the app to residents.
-Provide Educational Content (optional): Environmental Organization interacts with the system to potentially provide educational content about e-waste within the app.
-Diagram:
-
-      +-----------------+      +--------------------+      +-----------------------+      +--------------------+
-      | Resident        | ----> | Find E-waste Facility | ----> | E-waste Locator System | ----> | Map & Facility List |
-      +-----------------+      +--------------------+      +-----------------------+      +--------------------+
-                                                                        |
-                                                                        v
-                   +-----------------+                            +-------------------+
-                   | Recycling Facility | ----(register)----> | E-waste Locator System |
-                   |     Manager     |                            +-------------------+
-                                                                        |
-                                                                        v
-                                      (optional)                     +-------------------+
-                                          |                          | Manage E-waste       |
-                                          |                          | Facility Information |
-                                          |                          +-------------------+
-                                 (optional)                             |
-                                          |                             v
-                                      +-------------------+            +-------------------+
-                                      | Local Government  |            | Environmental      |
-                                      |     Agency       |            | Organization       |
-                                      +-------------------+            +-------------------+
-                                                 |                     |
-                                                 v                     v
-                                         (partner)              (provide content)
+![usecase](https://github.com/RAGALASAIVIVEK/SIHPS/assets/144979718/b3af288c-cd82-4d5c-95d3-588f645b3d1a)
 
 
 ## Technology Stack
 
-An E-waste facility locator can be built with a variety of technologies depending on the desired features and complexity. Here's a breakdown of a potential tech stack:
-
-Frontend:
-
-HTML, CSS, JavaScript: These are the fundamental building blocks for creating a user-friendly and responsive web interface that works seamlessly across various devices. Frameworks like Bootstrap can further simplify the development process.
-Backend:
-
-Server-side language (Python, Node.js, PHP):  These languages power the server-side logic, handling user requests, database interactions, and functionalities like search and filtering.
-
-Database (Cloud Firestore, MySQL, PostgreSQL): The database stores information about e-waste facilities, including location, accepted items, hours of operation, and contact details. Cloud-based options offer scalability and ease of management.
-
-Optional Features:
-
-Mapping API (Google Maps API): Integrates map functionalities to display facility locations and enable users to find the nearest one based on their current location.
-
-Firebase: A comprehensive backend-as-a-service (BaaS) platform by Google that can provide user authentication, real-time data updates, and cloud storage functionalities.
-
-Additional Considerations:
-
-Security: Implementing secure user authentication and data encryption is crucial for protecting user information.
-
-Scalability: Choosing technologies that can scale efficiently as the user base grows is important for future-proofing your application.
-
+Geocoding API for geographical coordinates PostgreSQL 15.4, MySQL 5.7.43 for database Jupyter Notebook 7.0.3 for image recognition using Tensorflow
 
 ## Dependencies
 
-Development Dependencies:
-
-Frontend Development:
-Programming languages (based on chosen framework): HTML, CSS, JavaScript
-JavaScript libraries or frameworks (for enhanced functionality and UI): React, Angular, Vue.js (consider mobile-friendliness if applicable)
-Backend Development:
-Programming languages: Python, Java, Node.js (choose based on developer expertise and project scale)
-Web frameworks (for faster development and structure): Django, Spring Boot, Express.js
-Database:
-Relational databases (structured data): MySQL, PostgreSQL (suitable for most e-waste facility information)
-NoSQL databases (flexible data structures): MongoDB (if location data involves complex geospatial aspects)
-External Service Dependencies:
-
-Mapping Service:
-Google Maps Platform (paid, feature-rich)
-OpenStreetMap (free, open-source alternative)
-Geolocation Service (Optional):
-Requires user permission to access location data for a more focused search (e.g., device GPS)
-Data Dependencies:
-
-E-waste Facility Data: This is the core data for your application. Sources include:
-Government agencies responsible for e-waste management
-Existing databases of recycling organizations
-Facility manager registration process (ensure data accuracy through verification)
-
+Mapping service-11days Data collections-15days Estimated Budget-Rs.30,000
 
 
