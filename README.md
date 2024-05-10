@@ -16,47 +16,69 @@ This would be good for the environment because e-waste can be dangerous if it's 
 
 ## Proposed Solution / Architecture Diagram
 
-Here's a breakdown of a possible solution and architecture for your E-waste Locator idea:
-
 Components:
 
-User Interface (UI): This can be a mobile app or a website where users can enter their location.
-Geolocation Service: This service will use the user's location data (with permission) to identify their zip code or city.
-E-waste Database: This database will store information on e-waste facilities, including:
+User Interface (UI): This can be a mobile app or website for user interaction.
+API Gateway: This acts as a single entry point for all API requests, managing security and routing to backend services.
+User Management Service (Optional): This service (e.g., using Firebase Authentication) handles user registration, login, and access control (if applicable).
+Geolocation Service (Optional): This retrieves user location data with permission for a more targeted search.
+E-waste Facility Database: This stores information about e-waste facilities, including:
 Address
 Contact information
-Accepted e-waste types (e.g., TVs, computers, batteries)
+Accepted e-waste types
 Operating hours
-Search & Recommendation Engine: This will take the user's location and search the E-waste Database for nearby facilities that accept their specific type of e-waste.
-Map Service: This will display the user's location and the recommended e-waste facilities on a map.
+(Optional) User ratings and reviews (if implemented)
+Search & Recommendation Engine: This service takes user input (location and desired e-waste type) and queries the database for relevant facilities.
+Mapping Service: This displays the user's location and recommended facilities on a map (e.g., Google Maps Platform or OpenStreetMap).
 Data Flow:
 
 User opens the E-waste Locator app/website.
+(Optional) User creates an account or logs in (if user management is included).
 UI prompts user for location (zip code or allows geolocation access).
-User enters location data or grants geolocation permission.
-UI sends location data to the Geolocation Service.
-Geolocation Service retrieves user's coordinates or zip code.
-UI sends location data (zip code or coordinates) to the Search & Recommendation Engine.
-Search & Recommendation Engine queries the E-waste Database for facilities in the user's area that accept their desired e-waste type.
-Search & Recommendation Engine sends results back to the UI.
-UI displays a list and map of nearby e-waste facilities with details like address and operating hours.
+(Optional) Geolocation Service retrieves user's coordinates or zip code.
+User selects desired e-waste type (optional filter).
+UI sends location data and filter criteria (if any) to the API Gateway.
+API Gateway routes the request to the Search & Recommendation Engine.
+Search & Recommendation Engine queries the E-waste Facility Database based on user input.
+Search & Recommendation Engine sends results back to the API Gateway.
+API Gateway forwards the results (list of facilities) to the UI.
+UI displays a list and map of nearby e-waste facilities with details like address, operating hours, and (optional) user ratings (if implemented).
 Diagram:
 
-+-------------------+        +-------------------+        +-------------------+        +--------------------+
-|       User        | ----> | Geolocation Service| ----> | Search & Recommend | ----> |        UI         |
-+-------------------+        +-------------------+        +-------------------+        +--------------------+
-         |                         |                         |                         |
-         | (Location Data)         | (User's Location)      | (Search Criteria)     | (List & Map Results)
-         |                         |                         |                         |
-+-------------------+        +-------------------+        +-------------------+        +--------------------+
-| E-waste Database  |        | Map Service         |
-+-------------------+        +-------------------+
-Additional Notes:
++--------------------+        +-----------------+        +-----------+        +--------------------+
+|       User        | ----> |      UI        | ----> | API Gateway| ----> | User Management  |
++--------------------+        +-----------------+        +-----------+        +--------------------+
+         |                         |                         | (Optional)         |
+         |                         |                         v                     v
+         |                         |                   +--------------------+        +--------------------+
+         |                         |                   | Geolocation Service| ----> | Search & Recommend |
+         |                         |                   +--------------------+        +--------------------+
+         |                         |                         | (Optional)         |        (Criteria)      |
+         |                         |                         v                     v
++--------------------+        +-----------------+        +-----------+        +--------------------+
+| Location (GPS/Zip)| ----> |      UI        | ----> | API Gateway| ----> | E-waste Facility  |
++--------------------+        +-----------------+        +-----------+        +--------------------+
+                                 |                         | Database             |
+                                 |                         +--------------------+
+                                 |                         | (Facility Data)     |
+                                 |                         +--------------------+
+                                 v                         |
+                             +--------------------+        +--------------------+
+                             | Mapping Service  | ----> |      UI        |
+                             +--------------------+        +--------------------+
+                                                        | (Results - List & Map)
+                                                        v
+                                                    +--------------------+
+                                                    |       User        |
+                                                    +--------------------+
+                                                        | (Optional Actions)
+                                                        | (e.g., Reviews)
+                                                        v
+                                                    +--------------------+
+                                                    |       Admin        | (Optional)
+                                                    +--------------------+
+                                                        | (Facility Management)
 
-The E-waste Database can be populated manually or by integrating with existing databases from government agencies or recycling organizations.
-The UI can be designed to allow users to filter results by facility type, operating hours, or specific e-waste categories.
-Security features should be implemented to protect user privacy and location data.
-This is a basic architecture, and you can add complexity based on your needs. For example, you could integrate with mapping APIs for more advanced route planning or allow users to leave reviews for e-waste facilities.
 
 
 ## Use Cases
