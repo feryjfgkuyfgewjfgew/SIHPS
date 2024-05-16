@@ -1,7 +1,7 @@
 # Smart India Hackathon Workshop
-# Date:10-05-2024
-## Register Number:212223230163
-## Name:RAGALA SAI VIVEK
+# Date:16-5-2004
+## Register Number:212223240104
+## Name: NARESH.R
 ## Problem Title
 E-Waste Facility Locator
 ## Problem Description
